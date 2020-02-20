@@ -1,0 +1,155 @@
+
+
+
+
+
+
+
+dsivaji@dinesh-VirtualBox:~/tcl_extension$ gcc -shared -o libhello.so -DUSE_TCL_STUBS -I$TCLINC hello.c ^C
+dsivaji@dinesh-VirtualBox:~/tcl_extension$ echo $TCLINC
+/home/dsivaji/tcl/linux/include
+dsivaji@dinesh-VirtualBox:~/tcl_extension$ 
+
+
+
+
+
+
+
+
+
+
+
+
+[dsivaji@FADL148 Tcl_Extension_Architecture__TEA__Sample_Extension-9b70b161ae]$ tclsh8.4
+% set tcl_library
+/repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/lib/tcl8.4
+% exit
+[dsivaji@FADL148 Tcl_Extension_Architecture__TEA__Sample_Extension-9b70b161ae]$ ls /repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/
+bin  include  lib  man
+[dsivaji@FADL148 Tcl_Extension_Architecture__TEA__Sample_Extension-9b70b161ae]$ cd /repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/
+[dsivaji@FADL148 linux]$ ls
+bin  include  lib  man
+[dsivaji@FADL148 linux]$ cd include/
+[dsivaji@FADL148 include]$ ls
+expect_comm.h  expect_tcl.h  tclDecls.h   tcl.h           tkDecls.h  tkPlatDecls.h
+expect.h       tcldbg.h      tclExtend.h  tclPlatDecls.h  tk.h
+[dsivaji@FADL148 include]$ pwd
+/repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/include
+[dsivaji@FADL148 include]$ export TCLINC=/repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/include
+[dsivaji@FADL148 include]$ ls
+expect_comm.h  expect_tcl.h  tclDecls.h   tcl.h           tkDecls.h  tkPlatDecls.h
+expect.h       tcldbg.h      tclExtend.h  tclPlatDecls.h  tk.h
+[dsivaji@FADL148 include]$ cd ..
+[dsivaji@FADL148 linux]$ ls
+bin  include  lib  man
+[dsivaji@FADL148 linux]$ cd lib/
+[dsivaji@FADL148 lib]$ ls
+dp4.0            libexpect5.32.so  libtclx8.3.so   libtkx8.3.so  tclX8.3        tkX8.3
+Dp-4.0           libtcl8.4.so      libtk8.4.so     net-snmp      tclxConfig.sh  tkxConfig.sh
+expect5.32       libtclstub8.4.a   libtkstub8.4.a  tcl8.4        tk8.4
+libexpect5.32.a  libtclx8.3.a      libtkx8.3.a     tclConfig.sh  tkConfig.sh
+[dsivaji@FADL148 lib]$ pwd
+/repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/lib
+[dsivaji@FADL148 lib]$ export TCLLIB=/repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/lib
+[dsivaji@FADL148 lib]$ echo $TCLINC
+/repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/include
+[dsivaji@FADL148 lib]$ echo $TCLLIB
+/repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/lib
+[dsivaji@FADL148 lib]$ pwd^C
+[dsivaji@FADL148 lib]$ ls
+dp4.0            libexpect5.32.so  libtclx8.3.so   libtkx8.3.so  tclX8.3        tkX8.3
+Dp-4.0           libtcl8.4.so      libtk8.4.so     net-snmp      tclxConfig.sh  tkxConfig.sh
+expect5.32       libtclstub8.4.a   libtkstub8.4.a  tcl8.4        tk8.4
+libexpect5.32.a  libtclx8.3.a      libtkx8.3.a     tclConfig.sh  tkConfig.sh
+[dsivaji@FADL148 lib]$ cd ..
+[dsivaji@FADL148 linux]$ cd ~/mypgms/tcl_extension/
+[dsivaji@FADL148 tcl_extension]$ ls
+hello.c
+Tcl_Extension_Architecture__TEA__Sample_Extension-9b70b161ae
+Tcl+Extension+Architecture+(TEA)+Sample+Extension-9b70b161ae.tgz
+[dsivaji@FADL148 tcl_extension]$  gcc -shared -o libhello.so -DUSE_TCL_STUBS -I$TCLINC hello.c -L$TCLLIB -ltclstub8.4
+/usr/bin/ld: /tmp/ccy2OHuj.o: relocation R_X86_64_32 against `.rodata' can not be used when making a shared object; recompile with -fPIC
+/tmp/ccy2OHuj.o: error adding symbols: Bad value
+collect2: error: ld returned 1 exit status
+[dsivaji@FADL148 tcl_extension]$  gcc -shared -o libhello.so -DUSE_TCL_STUBS -I$TCLINC hello.c -L$TCLLIB -ltclstub8.4^C
+[dsivaji@FADL148 tcl_extension]$ 
+[dsivaji@FADL148 tcl_extension]$  gcc -shared -o libhello.so -DUSE_TCL_STUBS -I$TCLINC hello.c -L$TCLLIB -ltclstub8.4^C
+[dsivaji@FADL148 tcl_extension]$ echo $TCLLIB
+/repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/lib
+[dsivaji@FADL148 tcl_extension]$ ls $TCLLIB
+dp4.0            libexpect5.32.so  libtclx8.3.so   libtkx8.3.so  tclX8.3        tkX8.3
+Dp-4.0           libtcl8.4.so      libtk8.4.so     net-snmp      tclxConfig.sh  tkxConfig.sh
+expect5.32       libtclstub8.4.a   libtkstub8.4.a  tcl8.4        tk8.4
+libexpect5.32.a  libtclx8.3.a      libtkx8.3.a     tclConfig.sh  tkConfig.sh
+[dsivaji@FADL148 tcl_extension]$  gcc -shared -o libhello.so -DUSE_TCL_STUBS -I$TCLINC hello.c 
+/usr/bin/ld: /tmp/ccCvjEx3.o: relocation R_X86_64_32 against `.rodata' can not be used when making a shared object; recompile with -fPIC
+/tmp/ccCvjEx3.o: error adding symbols: Bad value
+collect2: error: ld returned 1 exit status
+[dsivaji@FADL148 tcl_extension]$ man ld
+[dsivaji@FADL148 tcl_extension]$ tclsh8.5
+% set tcl_library
+/usr/share/tcl8.5
+% exit
+[dsivaji@FADL148 tcl_extension]$ ls /usr/share/tcl8.5
+auto.tcl   encoding     http1.0   msgs    package.tcl  safe.tcl     tclIndex  word.tcl
+clock.tcl  history.tcl  init.tcl  opt0.4  parray.tcl   tclDTrace.d  tm.tcl
+[dsivaji@FADL148 tcl_extension]$ tclsh
+% set tcl_version
+8.5
+% set tcl_library
+/usr/share/tcl8.5
+% exit
+^C
+[dsivaji@FADL148 tcl_extension]$  gcc -fPIC -shared -o libhello.so -DUSE_TCL_STUBS -I$TCLINC hello.c 
+[dsivaji@FADL148 tcl_extension]$  gcc -shared -o libhello.so -DUSE_TCL_STUBS -I$TCLINC hello.c ^C
+[dsivaji@FADL148 tcl_extension]$ ls 
+hello.c      Tcl_Extension_Architecture__TEA__Sample_Extension-9b70b161ae
+libhello.so  Tcl+Extension+Architecture+(TEA)+Sample+Extension-9b70b161ae.tgz
+[dsivaji@FADL148 tcl_extension]$ tclsh8.4
+% load libhello.so
+couldn't load file "libhello.so": libhello.so: cannot open shared object file: No such file or directory
+% load ./libhello.so
+couldn't load file "./libhello.so": ./libhello.so: wrong ELF class: ELFCLASS64
+% exit
+[dsivaji@FADL148 tcl_extension]$ tclsh8.5
+% parray tcl_platform
+tcl_platform(byteOrder)   = littleEndian
+tcl_platform(machine)     = x86_64
+tcl_platform(os)          = Linux
+tcl_platform(osVersion)   = 3.10.0-693.17.1.el7.x86_64
+tcl_platform(platform)    = unix
+tcl_platform(pointerSize) = 8
+tcl_platform(threaded)    = 1
+tcl_platform(user)        = dsivaji
+tcl_platform(wordSize)    = 8
+% load ./libhello.so
+% hello
+Hello, World!
+% 
+% 
+% 
+% info command hello
+hello
+% info body hello
+"hello" isn't a procedure
+% exit
+[dsivaji@FADL148 tcl_extension]$ echo TLCINC
+TLCINC
+[dsivaji@FADL148 tcl_extension]$ echo $TLCINC
+
+[dsivaji@FADL148 tcl_extension]$ echo $TLCLIB
+
+[dsivaji@FADL148 tcl_extension]$ echo $TCLINC
+/repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/include
+[dsivaji@FADL148 tcl_extension]$ echo $TCLLIB
+/repo/dsivaji/atc/vobs/dsl/APME/tcl/linux/lib
+[dsivaji@FADL148 tcl_extension]$ 
+
+
+
+
+
+
+
+
